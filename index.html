@@ -31,6 +31,7 @@
                     <div class="tab-pane fade show active" id="pills-inicio" role="tabpanel" aria-labelledby="pills-inicio-tab">
                         <h2>Bienvenidos</h2>
                         <p>Esta app fue hecha por Pablo Jara</p>
+
                     </div>
                     <div class="tab-pane fade" id="pills-calculo" role="tabpanel" aria-labelledby="pills-calculo-tab">
                         <div class="row">
@@ -40,63 +41,70 @@
                                     la cuota mensual a pagar en su préstamo, así como el total de intereses.</p>
                             </div>
                             <div class="col-sm-12">
-                                <!--importe-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputImporte">Importe</span>
+                                <form id="dataVal" class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <!--importe-->
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Importe</span>
+                                            </div>
+                                            <input id="inputImporte" type="text" class="form-control" aria-label="Default"  aria-describedby="inputGroup-sizing-default" value="" required>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                        </div>
+                                        <!--provincia-->
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="inputProvincia">Provincia</label>
+                                            </div>
+                                            <select class="custom-select" id="inputProvincia">
+                                                <option selected>Choose...</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                        <!--interes-->
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Taza de interés</span>
+                                            </div>
+                                            <input id="inputInteres" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" disabled value="20">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <button type="button" id="btnCalc" class="btn btn-primary btn-lg mr-2" onclick="validate()">Calcular</button>
+                                            <button type="button" id="btnDel" class="btn btn-secondary btn-lg" onclick="clean()">Borrar</button>
+                                        </div>
                                     </div>
-                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">$</span>
+                                </form>
+                                <form id="results" class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <!--cuota-mensual-->
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Cuota Mensual</span>
+                                            </div>
+                                            <input id="inputCuota" type="text" class="form-control" aria-label="Default" maxlength="5" aria-describedby="inputGroup-sizing-default" disabled>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                        </div>
+                                        <!--total-a-pagar-->
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Total a pagar</span>
+                                            </div>
+                                            <input id="inputTotal" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" disabled>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!--provincia-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <label class="input-group-text" for="inputGroupSelect01">Provincia</label>
-                                    </div>
-                                    <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>Choose...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                                <!--interes-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputInteres">Taza de interés</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">%</span>
-                                    </div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <button type="button" id="btnCalc" class="btn btn-primary btn-lg mr-2">Calcular</button>
-                                    <button type="button" id="btnDel" class="btn btn-secondary btn-lg">Borrar</button>
-                                </div>
-
-                                <!--cuota-mensual-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputCuota">Cuota Mensual</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-                                </div>
-                                <!--total-a-pagar-->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="inputTotal">Total a pagar</span>
-                                    </div>
-                                    <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -105,6 +113,7 @@
 
         </div>
     </div>
+    <script src="js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
