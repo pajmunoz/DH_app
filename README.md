@@ -6,6 +6,7 @@ Una mini app en la que se usa:
   - CSS
   - Javascript
   - Bootstrap 4 (SASS)
+  - AJAX
 
 # Novedades!
 
