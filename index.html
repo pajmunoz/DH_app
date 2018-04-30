@@ -13,14 +13,13 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <h1>PRESTAMOS.COM</h3>
-            </div>
-            <div class="col-sm-12">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <div class="col-md-8 offset-md-2">
+                <h1>PRESTAMOS.COM</h1>
+
+                <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-inicio-tab" data-toggle="pill" href="#pills-inicio" role="tab" aria-controls="pills-inicio"
-                            aria-selected="true">Inicio</a>
+                            aria-selected="true" onclick="clean(), validar()">Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="pills-calculo-tab" data-toggle="pill" href="#pills-calculo" role="tab" aria-controls="pills-calculo"
@@ -30,7 +29,10 @@
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-inicio" role="tabpanel" aria-labelledby="pills-inicio-tab">
                         <h2>Bienvenidos</h2>
-                        <p>Esta app fue hecha por Pablo Jara</p>
+                        <p class="lead">Este es un ejercicio para Digital House desarrollado por: <strong>Pablo Jara</strong></p>
+                        <p class="lead"><a href="https://github.com/pajmunoz/DH_app">https://github.com/pajmunoz/DH_app</a></p>
+                        <p class="lead"><a href="https://www.behance.net/pabloJM">https://www.behance.net/pabloJM</a></p>
+                        <p class="lead"><a href="https://www.linkedin.com/in/pablitojara/">https://www.linkedin.com/in/pablitojara/</a></p>
 
                     </div>
                     <div class="tab-pane fade" id="pills-calculo" role="tabpanel" aria-labelledby="pills-calculo-tab">
@@ -48,7 +50,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Importe</span>
                                             </div>
-                                            <input id="inputImporte" type="text" class="form-control" aria-label="Default"  aria-describedby="inputGroup-sizing-default" value="" required>
+                                            <input id="inputImporte" type="text" class="form-control text-right" aria-label="Default" onchange="validar()" onkeypress="return isNumberKey(event)"
+                                                placeholder="Ingrese importe" aria-describedby="inputGroup-sizing-default" value=""
+                                                maxlength="6" required>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">$</span>
                                             </div>
@@ -58,8 +62,7 @@
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text" for="inputProvincia">Provincia</label>
                                             </div>
-                                            <select class="custom-select" id="inputProvincia">
-                                                <option selected>Choose...</option>
+                                            <select class="custom-select text-right" id="inputProvincia" onchange="validar()" aria-placeholder="Elija.." required>
                                                 <option value="1">One</option>
                                                 <option value="2">Two</option>
                                                 <option value="3">Three</option>
@@ -70,14 +73,15 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Taza de interés</span>
                                             </div>
-                                            <input id="inputInteres" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" disabled value="20">
+                                            <input id="inputInteres" type="text" class="form-control text-right" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                                disabled value="20">
                                             <div class="input-group-append">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <button type="button" id="btnCalc" class="btn btn-primary btn-lg mr-2" onclick="validate()">Calcular</button>
-                                            <button type="button" id="btnDel" class="btn btn-secondary btn-lg" onclick="clean()">Borrar</button>
+                                            <button type="button" id="btnDel" class="btn btn-secondary btn-lg" onclick="clean(), validar()">Borrar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -88,7 +92,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Cuota Mensual</span>
                                             </div>
-                                            <input id="inputCuota" type="text" class="form-control" aria-label="Default" maxlength="5" aria-describedby="inputGroup-sizing-default" disabled>
+                                            <input id="inputCuota" type="text" class="form-control text-right" aria-label="Default" maxlength="5" aria-describedby="inputGroup-sizing-default"
+                                                disabled>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">$</span>
                                             </div>
@@ -98,7 +103,8 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">Total a pagar</span>
                                             </div>
-                                            <input id="inputTotal" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" disabled>
+                                            <input id="inputTotal" type="text" class="form-control text-right" aria-label="Default" aria-describedby="inputGroup-sizing-default"
+                                                disabled>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">$</span>
                                             </div>
@@ -114,6 +120,7 @@
         </div>
     </div>
     <script src="js/app.js"></script>
+    <script src="js/getjson.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
